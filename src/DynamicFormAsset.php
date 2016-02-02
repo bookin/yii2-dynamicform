@@ -47,6 +47,9 @@ class DynamicFormAsset extends \yii\web\AssetBundle
     {
         $this->setSourcePath(__DIR__ . '/assets');
         $this->setupAssets('js', ['yii2-dynamic-form']);
+        if(YII_DEBUG){
+            $this->publishOptions['forceCopy'] = true;
+        }
         parent::init();
     }
 
