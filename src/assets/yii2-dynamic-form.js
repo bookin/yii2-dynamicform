@@ -358,6 +358,15 @@
             });
         }
 
+        // "kartik-v/yii2-widget-datetimepicker"
+        var $hasDateTimepicker = $(widgetOptionsRoot.widgetItem).find('[data-krajee-datetimepicker]');
+        if ($hasDateTimepicker.length > 0) {
+            $hasDateTimepicker.each(function() {
+                $(this).parent().removeData().datetimepicker('remove');
+                $(this).parent().datetimepicker(eval($(this).attr('data-krajee-datetimepicker')));
+            });
+        }
+
         // "kartik-v/yii2-widget-timepicker"
         var $hasTimepicker = $(widgetOptionsRoot.widgetItem).find('[data-krajee-timepicker]');
         if ($hasTimepicker.length > 0) {
