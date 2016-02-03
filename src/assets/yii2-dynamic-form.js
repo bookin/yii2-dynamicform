@@ -524,8 +524,10 @@
 
                 var configTreeInput = eval($(this).attr('data-krajee-treeinput'));
                 var $dropdown = $(this).closest(".kv-tree-dropdown-container");
+                configTreeInput['treeId']=configTreeView['treeId'];
                 configTreeInput['inputId']=$dropdown.find(".kv-tree-input").attr('id');
                 configTreeInput['dropdownId']=$dropdown.find(".kv-tree-dropdown").attr('id');
+                configTreeInput['value']='';
 
                 //configTreeInput['inputId']=id+'-tree-input';
                 //configTreeInput['dropdownId']=id+'-tree-input-menu';
