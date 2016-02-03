@@ -4,6 +4,7 @@
  * A jQuery plugin to clone form elements in a nested manner, maintaining accessibility.
  *
  * @author Wanderson Bragança <wanderson.wbc@gmail.com>
+ * @author Anton Mikhailov <issues.bookin@gmail.com>
  */
 (function ($) {
     var pluginName = 'yiiDynamicForm';

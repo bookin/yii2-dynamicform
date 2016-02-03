@@ -1,8 +1,8 @@
 {
-    "name": "wbraganca/yii2-dynamicform",
+    "name": "bookin/yii2-dynamicform",
     "description": "It is widget to yii2 framework to clone form elements in a nested manner, maintaining accessibility.",
     "keywords": [
-        "wbraganca",
+        "bookin",
         "yii2",
         "extension",
         "widget",
@@ -13,19 +13,23 @@
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/wbraganca/yii2-dynamicform/issues",
-        "wiki": "https://github.com/wbraganca/yii2-dynamicform/wiki/",
-        "source": "https://github.com/wbraganca/yii2-dynamicform"
+        "issues": "https://github.com/bookin/yii2-dynamicform/issues",
+        "wiki": "https://github.com/bookin/yii2-dynamicform/wiki/",
+        "source": "https://github.com/bookin/yii2-dynamicform"
     },
     "authors": [
         {
             "name": "Wanderson Bragança",
             "email": "wanderson.wbc@gmail.com",
             "homepage": "http://wbraganca.com"
+        },
+        {
+            "name": "Anton Mikhailov",
+            "email": "issues.bookin@gmail.com"
         }
     ],
     "require": {
-        "yiisoft/yii2": ">=2.0.0",
+        "yiisoft/yii2": "*",
         "symfony/dom-crawler": "dev-master",
         "symfony/css-selector": "dev-master"
     },
@@ -34,7 +38,7 @@
     },
     "autoload": {
         "psr-4": {
-            "wbraganca\\dynamicform\\": "src"
+            "bookin\\dynamicform\\": "src"
         }
     }
 }
