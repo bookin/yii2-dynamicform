@@ -507,6 +507,32 @@
                 });
             });
         }
+
+        // kartik-v/yii2-tree-manager input
+        var $hasTreeInput = $(widgetOptionsRoot.widgetItem).find('[data-krajee-treeinput]');
+        if ($hasTreeInput.length > 0) {
+            $hasTreeInput.each(function () {
+                var id = $(this).attr('id');
+                var $object = $('#' + id);
+
+                var configTreeView = eval($(this).attr('data-krajee-treeview'));
+                configTreeView['treeId']=id+'-tree';
+                configTreeView['detailId']=id+'-detail';
+                configTreeView['toolbarId']=id+'-toolbar';
+                configTreeView['wrapperId']=id+'-wrapper';
+
+                var configTreeInput = eval($(this).attr('data-krajee-treeinput'));
+                var $dropdown = $(this).closest(".kv-tree-dropdown-container");
+                configTreeInput['inputId']=$dropdown.find(".kv-tree-input").attr('id');
+                configTreeInput['dropdownId']=$dropdown.find(".kv-tree-dropdown").attr('id');
+
+                //configTreeInput['inputId']=id+'-tree-input';
+                //configTreeInput['dropdownId']=id+'-tree-input-menu';
+
+                $object.treeview(configTreeView);
+                $object.treeinput(configTreeInput);
+            });
+        }
     };
 
 })(window.jQuery);
