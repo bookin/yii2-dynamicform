@@ -10,9 +10,12 @@ namespace bookin\dynamicform;
 use Yii;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\CssSelector\CssSelector;
+use yii\base\Model;
+use yii\db\ActiveRecord;
 use yii\helpers\Json;
 use yii\helpers\Html;
 use yii\base\InvalidConfigException;
+use yii\web\View;
 
 /**
  * yii2-dynamicform is widget to yii2 framework to clone form elements in a nested manner, maintaining accessibility.
@@ -26,7 +29,7 @@ class DynamicFormWidget extends \yii\base\Widget
      * @var string
      */
     public $widgetContainer;
-     /**
+    /**
      * @var string
      */
     public $widgetBody;
@@ -42,7 +45,7 @@ class DynamicFormWidget extends \yii\base\Widget
      * @var string
      */
     public $insertButton;
-     /**
+    /**
      * @var string
      */
     public $deleteButton;
@@ -50,7 +53,7 @@ class DynamicFormWidget extends \yii\base\Widget
      * @var string 'bottom' or 'top';
      */
     public $insertPosition = 'bottom';
-     /**
+    /**
      * @var Model|ActiveRecord the model used for the form
      */
     public $model;
@@ -135,7 +138,7 @@ class DynamicFormWidget extends \yii\base\Widget
         $this->_options['fields']          = [];
 
         foreach ($this->formFields as $field) {
-             $this->_options['fields'][] = [
+            $this->_options['fields'][] = [
                 'id' => Html::getInputId($this->model, '[{}]' . $field),
                 'name' => Html::getInputName($this->model, '[{}]' . $field)
             ];
@@ -234,7 +237,7 @@ class DynamicFormWidget extends \yii\base\Widget
         $document->appendChild($document->importNode($results->first()->getNode(0), true));
         $this->_options['template'] = trim($document->saveHTML());
 
-        if (isset($this->_options['min']) && $this->_options['min'] === 0 && $this->model->isNewRecord) {
+        if ($this->isRemoveItems()) {
             $content = $this->removeItems($content);
         }
 
@@ -252,9 +255,32 @@ class DynamicFormWidget extends \yii\base\Widget
     }
 
     /**
+     * @return bool
+     */
+    protected function isRemoveItems(){
+        return  isset($this->_options['min']) &&
+        $this->_options['min'] === 0 &&
+        $this->model->isNewRecord &&
+        $this->isModelEmpty();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isModelEmpty(){
+        $empty = true;
+        $attributes = $this->model->attributes();
+        foreach($attributes as $attr){
+            $empty = empty($this->model->{$attr}) && $empty;
+        }
+        return $empty;
+    }
+
+    /**
      * Clear HTML widgetBody. Required to work with zero or more items.
      *
      * @param string $content
+     * @return string
      */
     private function removeItems($content)
     {
