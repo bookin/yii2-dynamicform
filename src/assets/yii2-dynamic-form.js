@@ -25,6 +25,7 @@
     };
 
     var events = {
+        afterParse: 'afterParse',
         beforeInsert: 'beforeInsert',
         afterInsert: 'afterInsert',
         beforeDelete: 'beforeDelete',
@@ -36,6 +37,7 @@
         init: function (widgetOptions) {
             return this.each(function () {
                 widgetOptions.template = _parseTemplate(widgetOptions);
+                $('.' + widgetOptions.widgetContainer).triggerHandler(events.afterParse, widgetOptions.template, widgetOptions);
             });
         },
 
