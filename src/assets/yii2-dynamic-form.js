@@ -536,6 +536,18 @@
                 $object.treeinput(configTreeInput);
             });
         }
+
+
+        // bookin/intlTelInput
+        var $hasIntlTel = $(widgetOptionsRoot.widgetItem).find('[data-intl-options]');
+        if ($hasIntlTel.length > 0) {
+            $hasIntlTel.each(function () {
+                var id = $(this).attr('id');
+                var $object = $('#' + id);
+                var config = eval($(this).attr('data-intl-options'));
+                $object.intlTelInput(config);
+            });
+        }
     };
 
 })(window.jQuery);
