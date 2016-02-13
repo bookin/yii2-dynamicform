@@ -66,6 +66,10 @@ class DynamicFormWidget extends \yii\base\Widget
      */
     public $formFields;
     /**
+     * @var array fields to not be check for the void.
+     */
+    public $excludeFields = [];
+    /**
      * @var integer
      */
     public $min = 1;
@@ -116,6 +120,9 @@ class DynamicFormWidget extends \yii\base\Widget
         }
         if (empty($this->formFields) || !is_array($this->formFields)) {
             throw new InvalidConfigException("The 'formFields' property must be set.");
+        }
+        if (!empty($this->excludeFields) && !is_array($this->excludeFields)) {
+            throw new InvalidConfigException("The 'excludeFields' property must be array.");
         }
 
         $this->initOptions();
@@ -271,7 +278,9 @@ class DynamicFormWidget extends \yii\base\Widget
         $empty = true;
         $attributes = $this->model->attributes();
         foreach($attributes as $attr){
-            $empty = empty($this->model->{$attr}) && $empty;
+            if(!in_array($attr, $this->excludeFields)){
+                $empty = empty($this->model->{$attr}) && $empty;
+            }
         }
         return $empty;
     }
