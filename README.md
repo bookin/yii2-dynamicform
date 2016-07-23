@@ -1,6 +1,7 @@
 yii2-dynamicform fork from wbraganca/yii2-dynamicform
 ===================
 
+[![Total Downloads](https://poser.pugx.org/bookin/yii2-dynamicform/downloads)](https://packagist.org/packages/bookin/yii2-dynamicform)
 
 It is widget to yii2 framework to clone form elements in a nested manner, maintaining accessibility.
 ![yii2-dynamicform](http://wbraganca.com/img/yii2-dynamicform/sample.jpg)
